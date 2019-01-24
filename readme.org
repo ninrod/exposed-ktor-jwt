@@ -1,6 +1,6 @@
-* Chess
+* exposed-ktor
 
-- toy project to develop a chess server
+- example of a exposed/ktor capable kotlin app using a buildSrc strategy and exporting an angular frontend
 
 ** building
 #+BEGIN_SRC shell
@@ -22,6 +22,12 @@ $ make
 # then open your brower on http://localhost:4200
 #+END_SRC
 
-* Copyright (c)
 
-Copyright (c) 2019 Filipe Silva (ninrod)
+* LICENSE
+- [[https://www.gnu.org/licenses/gpl-3.0.en.html][GNU General Public License v3]]
+#+BEGIN_SRC text
+GNU General Public License v3
+Copyright (c) 2015-2018 Filipe Silva (ninrod)
+#+END_SRC
+
+

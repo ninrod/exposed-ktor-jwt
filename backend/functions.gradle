@@ -1,0 +1,5 @@
+ext.doWeHaveToUseArtifactory = { ->
+    def centos = new File('/etc/centos-release').exists()
+    def workbench = new File('/etc/hostname').getText('UTF-8').trim() == "workbench"
+    return centos && workbench
+}

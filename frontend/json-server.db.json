@@ -1,0 +1,28 @@
+{
+  "diagnostic": {
+    "version": "0.0.1"
+  },
+  "vector": [
+    {"id": 1},
+    {"id": 2},
+    {"id": 3}
+  ],
+  "booleans": {
+    "bool1": true,
+    "bool2": false
+  },
+  "users": [
+    {
+      "login": "1",
+      "firstname": "first",
+      "lastname": "last",
+      "description": "desc"
+    },
+    {
+      "login": "2",
+      "firstname": "second",
+      "lastname": "last, but not least",
+      "description": "a more complete description"
+    }
+  ]
+}

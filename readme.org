@@ -1,0 +1,27 @@
+* Chess
+
+- toy project to develop a chess server
+
+** building
+#+BEGIN_SRC shell
+
+# if you don't have a running postgresql container, spin up one:
+$ make db
+
+# first, build the backend
+$ cd backend && gradle build
+
+# now build the frontend
+$ cd frontend && yarn && yarn build
+
+#+END_SRC
+
+** running
+#+BEGIN_SRC shell
+$ make
+# then open your brower on http://localhost:4200
+#+END_SRC
+
+* Copyright (c)
+
+Copyright (c) 2019 Filipe Silva (ninrod)

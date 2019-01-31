@@ -6,6 +6,7 @@ object Versions {
     const val jfrog = "4.9.0"
     const val ktor = "1.1.1"
     const val logback = "1.2.1"
+    const val slf4j = "1.7.25"
 }
 
 object Config {
@@ -32,4 +33,8 @@ object Libs {
     const val ktor_locations = "io.ktor:ktor-locations:${Versions.ktor}"
     const val ktor_test = "io.ktor:ktor-server-tests:${Versions.ktor}"
     const val ktor_gson = "io.ktor:ktor-gson:${Versions.ktor}"
+
+    const val slf4j_api = "org.slf4j:slf4j-api:${Versions.slf4j}"
+    const val slf4j_simple = "org.slf4j:slf4j-simple:${Versions.slf4j}"
+
 }

@@ -63,6 +63,10 @@ dependencies {
     compile(Libs.ktor_locations)
     compile(Libs.ktor_gson)
 
+    // slf4j
+    compile(Libs.slf4j_api)
+    compile(Libs.slf4j_simple)
+
     // db
     compile(Libs.exposed)
     compile(Libs.postgresql)

@@ -28,7 +28,8 @@ fun getUsers(): List<User> {
     }
 }
 
-fun findUserByCredentials(credential: UserPasswordCredential): User {
-    val r: ResultRow  = UserRepo.selectAll().toList().filter { it[UserRepo.password] == credential.password }.first()
-    return User(r[UserRepo.login], r[UserRepo.firstname], r[UserRepo.lastname], r[UserRepo.description] ?: "")
-}
+fun findUserByCredentials(credential: UserPasswordCredential): User =
+    transaction {
+        val r = UserRepo.selectAll().toList().filter { it[UserRepo.password] == credential.password }.first()
+        User(r[UserRepo.login], r[UserRepo.firstname], r[UserRepo.lastname], r[UserRepo.description] ?: "")
+    }

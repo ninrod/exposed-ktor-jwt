@@ -1,6 +1,11 @@
 <div style="text-align:center">
-  <h1>{{ title }}</h1>
+  <h1>Users</h1>
   <hr/>
-  <h2><a href="https://ninrod.org">home</a></h2>
+  <h2 *ngFor="let user of users">
+    id = {{user.login}},
+    firstname = {{user.firstname}},
+    lastname = {{user.lastname}},
+    description = {{user.description}}
+  </h2>
 </div>
 <router-outlet></router-outlet>

@@ -1,17 +1,23 @@
+apply from: "$rootDir/functions.gradle"
+apply from: "$rootDir/versions.gradle"
+apply from: "$rootDir/configs.gradle"
+
 buildscript {
     apply from: "$rootDir/functions.gradle"
+    apply from: "$rootDir/versions.gradle"
+    apply from: "$rootDir/configs.gradle"
     repositories {
         if (doWeHaveToUseArtifactory())
-            maven { url(Config.artifactoryUrl)}
+            maven { url(configs.artifactory) }
         else {
             jcenter()
-            maven { url 'https://kotlin.bintray.com/ktor' }
+            maven { url (configs.ktor) }
         }
     }
     dependencies {
         if (doWeHaveToUseArtifactory())
-            classpath(Libs.jfrog_plugin)
-        classpath(Libs.kotlin_plugin)
+            classpath(deps.jfrog)
+        classpath(deps.kotlin.plugin)
     }
 }
 
@@ -21,7 +27,7 @@ apply plugin: "application"
 group = "org.ninrod.blog"
 version = "0.0.1"
 sourceCompatibility = 1.8
-mainClassName = "org.ninrod.blog.EntrypointKt"
+mainClassName = "org.ninrod.blog.MainKt"
 
 compileKotlin {
     kotlinOptions {
@@ -38,10 +44,10 @@ compileTestKotlin {
 
 repositories {
     if (doWeHaveToUseArtifactory())
-        maven { url "${artifactory_gradle}"}
+        maven { url (configs.artifactory) }
         else {
             jcenter()
-            maven { url 'https://kotlin.bintray.com/ktor' }
+        maven { url (configs.ktor) }
         }
 }
 
@@ -51,27 +57,27 @@ test {
 
 dependencies {
     // kotlin main
-    compile(Libs.kotlin_stdlib)
-    compile(Libs.kotlin_reflect)
+    compile(deps.kotlin.stdlib)
+    compile(deps.kotlin.reflect)
 
     //ktor
-    compile(Libs.ktor_logback)
-    compile(Libs.ktor_netty)
-    compile(Libs.ktor_server_core)
-    compile(Libs.ktor_auth)
-    compile(Libs.ktor_auth_jwt)
-    compile(Libs.ktor_locations)
-    compile(Libs.ktor_gson)
+    compile(deps.ktor.netty)
+    compile(deps.ktor.core)
+    compile(deps.ktor.jwt)
+    compile(deps.ktor.gson)
+    compile(deps.ktor.logback)
 
     // db
-    compile(Libs.exposed)
-    compile(Libs.postgresql)
+    compile(deps.exposed)
+    compile(deps.postgre)
 
     // tests
-    testCompile(Libs.junit_api)
-    testRuntimeOnly(Libs.junit_engine)
+    testCompile(deps.junit.api)
+    testCompile(deps.ktor.test.core)
+    testCompile(deps.ktor.test.host)
+    testCompile(deps.kluent)
 
-    testCompile(Libs.ktor_test)
+    testRuntimeOnly(deps.junit.engine)
 }
 
 jar {

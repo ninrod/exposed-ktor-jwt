@@ -6,7 +6,10 @@ build:
 pristine:
 	git clean -fdx
 
+up:
+	java -jar build/libs/chess-0.0.1.jar
+
 test:
-	DATABASE_ADDRESS=db java -jar build/libs/chess-0.0.1.jar
+	curl -s localhost:8080/database | jq '.[2]'
 
 full: pristine build test

@@ -1,0 +1,5 @@
+def configs = new Expando()
+ext.configs = configs
+
+configs.artifactory = 'http://artifactory/artifactory/gradle'
+configs.ktor = 'https://kotlin.bintray.com/ktor'

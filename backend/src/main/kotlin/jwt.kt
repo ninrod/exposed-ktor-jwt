@@ -4,6 +4,8 @@ import com.auth0.jwt.*
 import com.auth0.jwt.algorithms.*
 import java.util.*
 
+data class Token (val token: String)
+
 object JwtConfig {
     const val issuer = "ninrod.org"
     private const val secret = "zAP5MBA4B4Ijz0MZaS48"

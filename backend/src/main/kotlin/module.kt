@@ -39,7 +39,7 @@ fun Application.module() {
         post("/login") {
             val user = findUserByCredentials(call.receive<UserPasswordCredential>())
             val token = JwtConfig.makeToken(user)
-            call.respondText(token)
+            call.respond(Token(token))
         }
 
         get("/") { call.respondText("Hello World!", ContentType.Text.Plain) }

@@ -1,5 +1,6 @@
 package org.ninrod.blog
 
+import io.ktor.auth.UserPasswordCredential
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
 
@@ -10,6 +11,7 @@ object UserRepo : Table("usuario") {
     val firstname = varchar("firstname", length = 255)
     val lastname = varchar("lastname", length = 255)
     val description = varchar("description", length = 255).nullable()
+    val password = varchar("password", length = 30)
 }
 
 fun getUsers(): List<User> {
@@ -24,4 +26,9 @@ fun getUsers(): List<User> {
             )
         }
     }
+}
+
+fun findUserByCredentials(credential: UserPasswordCredential): User {
+    val r: ResultRow  = UserRepo.selectAll().toList().filter { it[UserRepo.password] == credential.password }.first()
+    return User(r[UserRepo.login], r[UserRepo.firstname], r[UserRepo.lastname], r[UserRepo.description] ?: "")
 }

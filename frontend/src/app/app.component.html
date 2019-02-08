@@ -1,11 +1,17 @@
-<div style="text-align:center">
-  <h1>Users</h1>
-  <hr/>
-  <h2 *ngFor="let user of users">
-    id = {{user.login}},
-    firstname = {{user.firstname}},
-    lastname = {{user.lastname}},
-    description = {{user.description}}
-  </h2>
+<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/">Home</a>
+        <a class="nav-item nav-link" (click)="logout()">Logout</a>
+    </div>
+</nav>
+
+<!-- main app container -->
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
 </div>
-<router-outlet></router-outlet>

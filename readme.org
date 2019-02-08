@@ -24,7 +24,7 @@ $ java -jar backend/build/libs/chess-0.0.1.jar
 $ cd frontend && yarn start
 # then open your brower on http://localhost:4200
 #+END_SRC
-* testing the =/login= endpoint with postman
+* testing the =/secret= endpoint with postman
   - see [[https://stackoverflow.com/a/24710676/4921402][this]] so question
   - basically you have to issue a GET request containing a header row like this:
 
@@ -32,6 +32,16 @@ $ cd frontend && yarn start
 Key: 'Authorization'
 Value: Bearer 'yourjwttokenASDFASDFdsfasdfDSAFasdfADfADfASdafAsdFASDF'
 #+END_SRC
+
+* testing the =/secret= endpoint with curl
+** login
+   #+BEGIN_SRC sh
+   $ TOKEN=$(curl -s -X POST -d '{"name" : "", "password": "secret"}' -H "Content-Type: application/json"  localhost:8080/login | jq -r '.token')
+   #+END_SRC
+** GET /secret
+   #+BEGIN_SRC sh
+   $ curl -H 'Accept: application/json' -H "Authorization: Bearer ${TOKEN}" https://localhost:8080/secret
+   #+END_SRC
 
 * LICENSE
 - [[https://www.gnu.org/licenses/gpl-3.0.en.html][GNU General Public License v3]]

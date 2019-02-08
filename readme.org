@@ -24,7 +24,14 @@ $ java -jar backend/build/libs/chess-0.0.1.jar
 $ cd frontend && yarn start
 # then open your brower on http://localhost:4200
 #+END_SRC
+* testing /login endpoint with postman
+  - see [[https://stackoverflow.com/a/24710676/4921402][this]] so question
+  - basically you have to issue a GET request and add a header row like this:
 
+#+BEGIN_SRC text
+Key: 'Authorization'
+Value: Bearer 'yourjwttokenASDFASDFdsfasdfDSAFasdfADfADfASdafAsdFASDF'
+#+END_SRC
 
 * LICENSE
 - [[https://www.gnu.org/licenses/gpl-3.0.en.html][GNU General Public License v3]]

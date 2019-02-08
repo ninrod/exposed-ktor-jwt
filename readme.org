@@ -26,7 +26,7 @@ $ cd frontend && yarn start
 #+END_SRC
 * testing the =/login= endpoint with postman
   - see [[https://stackoverflow.com/a/24710676/4921402][this]] so question
-  - basically you have to issue a GET request and add a header row like this:
+  - basically you have to issue a GET request containing a header row like this:
 
 #+BEGIN_SRC text
 Key: 'Authorization'

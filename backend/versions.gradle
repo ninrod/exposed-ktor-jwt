@@ -29,7 +29,8 @@ deps.kotlin = [
 ]
 deps.junit = [
     api    : "org.junit.jupiter:junit-jupiter-api:${versions.junit}",
-    engine : "org.junit.jupiter:junit-jupiter-engine:${versions.junit}"
+    engine : "org.junit.jupiter:junit-jupiter-engine:${versions.junit}",
+    vintage: "org.junit.vintage:junit-vintage-engine:${versions.junit}"
 ]
 deps.ktor = [
     core      : "io.ktor:ktor-server-core:${versions.ktor}",

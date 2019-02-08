@@ -78,6 +78,7 @@ dependencies {
     testCompile(deps.kluent)
 
     testRuntimeOnly(deps.junit.engine)
+    testRuntimeOnly(deps.junit.vintage)
 }
 
 jar {

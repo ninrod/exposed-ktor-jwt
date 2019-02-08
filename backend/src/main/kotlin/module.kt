@@ -14,8 +14,14 @@ import io.ktor.routing.routing
 fun Application.module() {
     install(ContentNegotiation) { gson { setPrettyPrinting() } }
     routing {
-        get("/") { call.respondText("Hello World!", ContentType.Text.Plain) }
-        get("/database") { call.respond(getUsers()) }
+        get("/") {
+            println("GET: /")
+            call.respondText("Hello World!", ContentType.Text.Plain)
+        }
+        get("/database") {
+            println("GET: /database")
+            call.respond(getUsers())
+        }
     }
 }
 

@@ -3,20 +3,19 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Token } from '../model/token';
+import { Credential } from '../model/credential';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-  public tokenSubject: BehaviorSubject<Token>;
+  public tokenSubject: BehaviorSubject<Token> = new BehaviorSubject<Token>(null)
 
   constructor(private http: HttpClient) {
-    this.tokenSubject = new BehaviorSubject<Token>(JSON.parse(localStorage.getItem('token')));
+    this.tokenSubject.next(JSON.parse(localStorage.getItem('token')))
   }
 
   login(username: string, password: string) {
-    return this.http.post<any>('/api/login', {
-      "name": username,
-      "password": password
-    }).pipe(map(token => {
+    let cred = new Credential({ username, password })
+    return this.http.post<Token>('/api/login', cred).pipe(map(token => {
       if (token) {
         localStorage.setItem('token', JSON.stringify(token));
         this.tokenSubject.next(token);

@@ -17,11 +17,7 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.auth.tokenSubject.subscribe((t) => {
-      console.log('token received')
-      console.dir(t)
-      this.token = t
-    })
+    this.auth.tokenSubject.subscribe(t => this.token = t)
   }
 
   logout() {

@@ -14,7 +14,10 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string) {
-    let cred = new Credential({ username, password })
+    let cred = new Credential({
+      name: username,
+      password: password
+    })
     return this.http.post<Token>('/api/login', cred).pipe(map(token => {
       if (token) {
         localStorage.setItem('token', JSON.stringify(token));

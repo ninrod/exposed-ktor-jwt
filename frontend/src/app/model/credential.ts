@@ -1,5 +1,5 @@
 export class Credential {
-  public username: string
+  public name: string
   public password: string
   constructor(values: object = {}) {
     Object.assign(this, values);

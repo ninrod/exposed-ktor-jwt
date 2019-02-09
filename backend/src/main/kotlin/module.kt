@@ -12,6 +12,7 @@ import io.ktor.features.CallLogging
 import io.ktor.features.ContentNegotiation
 import io.ktor.gson.gson
 import io.ktor.http.ContentType
+import io.ktor.http.HttpStatusCode
 import io.ktor.request.receive
 import io.ktor.response.respond
 import io.ktor.response.respondText
@@ -40,8 +41,9 @@ fun Application.module() {
 
         post("/login") {
             val user = findUserByCredentials(call.receive<UserPasswordCredential>())
-            val token = JwtConfig.makeToken(user)
-            call.respond(Token(token))
+            user?.let {
+                call.respond(Token(JwtConfig.makeToken(it)))
+            } ?: call.respond(HttpStatusCode.Unauthorized)
         }
 
         authenticate {

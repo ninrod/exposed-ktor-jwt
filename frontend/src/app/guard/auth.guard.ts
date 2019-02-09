@@ -7,15 +7,19 @@ import { AuthenticationService } from '../service/authentication.service';
 export class AuthGuard implements CanActivate {
   constructor(
     private router: Router,
-    private authenticationService: AuthenticationService
+    private auth: AuthenticationService
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const token = this.authenticationService.tokenValue;
+    const token = this.auth.tokenSubject.value;
     if (token) {
       return true;
     }
-    this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+    this.router.navigate(['/login'], {
+      queryParams: {
+        returnUrl: state.url
+      }
+    });
     return false;
   }
 }

@@ -2,18 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { User } from '../model/user';
+import { Token } from '../model/token';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-  private tokenSubject: BehaviorSubject<User>;
+  public tokenSubject: BehaviorSubject<Token>;
 
   constructor(private http: HttpClient) {
-    this.tokenSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('token')));
-  }
-
-  public get tokenValue(): User {
-    return this.tokenSubject.value;
+    this.tokenSubject = new BehaviorSubject<Token>(JSON.parse(localStorage.getItem('token')));
   }
 
   login(username: string, password: string) {
@@ -22,7 +18,7 @@ export class AuthenticationService {
       "password": password
     }).pipe(map(token => {
       if (token) {
-        localStorage.setItem('token', token);
+        localStorage.setItem('token', JSON.stringify(token));
         this.tokenSubject.next(token);
       }
       return token;

@@ -48,8 +48,7 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(this.f.username.value, this.f.password.value)
       .pipe(first())
       .subscribe(() => this.router.navigate([this.returnUrl]),
-        error => {
-          console.dir(error)
+        () => {
           this.error = "invalid user/password"
           this.loading = false
         })

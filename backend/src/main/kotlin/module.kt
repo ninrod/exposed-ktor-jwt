@@ -36,21 +36,16 @@ fun Application.module() {
         }
     }
     routing {
+        route("/") { get { call.respondText("Hello World!", ContentType.Text.Plain) } }
+
         post("/login") {
             val user = findUserByCredentials(call.receive<UserPasswordCredential>())
             val token = JwtConfig.makeToken(user)
             call.respond(Token(token))
         }
 
-        get("/") { call.respondText("Hello World!", ContentType.Text.Plain) }
-        get("/database") { call.respond(getUsers()) }
-
         authenticate {
-            route("/secret") {
-                get {
-                    call.respond(getUsers())
-                }
-            }
+            get("/secret") { call.respond(getUsers()) }
         }
     }
 }

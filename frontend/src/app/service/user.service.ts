@@ -7,6 +7,6 @@ import { User } from '../model/user';
 export class UsersService {
   constructor(private http: HttpClient) { }
   public getUsers(): Observable<User[]> {
-    return this.http.get<User[]>('api/database');
+    return this.http.get<User[]>('api/secret');
   }
 }

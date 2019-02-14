@@ -15,7 +15,8 @@ import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { HomeComponent } from './pages/home/home.component'
 import { LoginComponent } from './pages/login/login.component'
-import { UsersService } from './service/user.service'
+import { UsersService } from './service/user.service';
+import { DashboardComponent } from './pages/dashboard/dashboard.component'
 
 export function tokenRetriever() {
   let token = JSON.parse(localStorage.getItem('token'))
@@ -45,7 +46,8 @@ export function tokenRetriever() {
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    DashboardComponent
   ],
   providers: [UsersService],
   bootstrap: [AppComponent]

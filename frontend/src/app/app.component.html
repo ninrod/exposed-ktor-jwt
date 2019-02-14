@@ -5,6 +5,10 @@
         <mat-icon class="icon">home</mat-icon>
         <span class="label">Home</span>
       </a>
+      <a mat-list-item routerLink="/dashboard">
+        <mat-icon class="icon">input</mat-icon>
+        <span class="label">dashboard</span>
+      </a>
       <a mat-list-item (click)="logout()">
         <mat-icon class="icon">input</mat-icon>
         <span class="label">logout</span>
@@ -29,6 +33,12 @@
             <a routerLink="/">
               <mat-icon class="icon">home</mat-icon>
               <span class="label">Home</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/dashboard">
+              <mat-icon class="icon">input</mat-icon>
+              <span class="label">Dashboard</span>
             </a>
           </li>
           <li>

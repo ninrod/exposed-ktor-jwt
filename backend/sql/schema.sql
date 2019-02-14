@@ -8,12 +8,12 @@ CREATE TABLE "public"."usuario"
 );
 
 insert into usuario (login, description, firstname, lastname, password)
-  values ('john@gmail.com', 'likes pizza', 'John', 'Doe', 'abc');
+  values ('john', 'likes pizza', 'John', 'Doe', 'abc');
 
 insert into usuario (login, description, firstname, lastname, password)
-  values ('bob@hotmail.com', 'sleeps all day', 'Bob', 'Shutterland', 'pass');
+  values ('bob', 'sleeps all day', 'Bob', 'Shutterland', 'pass');
 
 insert into usuario (login, description, firstname, lastname, password)
-  values ('alice@wonderland.org', 'lives in the wonderland', 'Alice', 'Inchains', 'secret');
+  values ('alice', 'lives in the wonderland', 'Alice', 'Inchains', 'secret');
 
 commit;

@@ -16,9 +16,4 @@ export class HomeComponent implements OnInit {
       (users) => this.users = users
     )
   }
-
-  test() {
-    console.log('funcionou')
-  }
-
 }

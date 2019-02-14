@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 import { JwtModule } from '@auth0/angular-jwt'
@@ -27,6 +28,7 @@ export function tokenRetriever() {
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FlexLayoutModule,
     MyMaterialModule,
     AppRoutingModule,
     HttpClientModule,

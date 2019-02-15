@@ -1,11 +1,11 @@
 package org.ninrod.blog.infra
 
-import com.auth0.jwt.*
-import com.auth0.jwt.algorithms.*
+import com.auth0.jwt.JWT
+import com.auth0.jwt.JWTVerifier
+import com.auth0.jwt.algorithms.Algorithm
 import io.ktor.auth.jwt.JWTAuthenticationProvider
 import io.ktor.auth.jwt.JWTPrincipal
 import org.ninrod.blog.user.User
-import org.ninrod.blog.user.getUsers
 import java.util.*
 
 data class Token (val token: String)
@@ -36,9 +36,13 @@ fun JWTAuthenticationProvider.customConfigure() {
     verifier(JwtConfig.verifier)
     realm = JwtConfig.issuer
     validate {
-        if (getUsers().filter { u -> u.login == it.payload.getClaim("login").asString() }.any())
-            JWTPrincipal(it.payload)
-        else
-            null
+        with(it.payload) {
+            val login = getClaim("login").isNull
+            val id = getClaim("id").isNull
+            if (login || id)
+                null
+            else
+                JWTPrincipal(it.payload)
+        }
     }
 }

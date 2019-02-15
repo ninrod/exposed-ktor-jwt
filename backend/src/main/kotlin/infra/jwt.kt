@@ -2,7 +2,10 @@ package org.ninrod.blog
 
 import com.auth0.jwt.*
 import com.auth0.jwt.algorithms.*
+import io.ktor.auth.jwt.JWTAuthenticationProvider
+import io.ktor.auth.jwt.JWTPrincipal
 import org.ninrod.blog.user.User
+import org.ninrod.blog.user.getUsers
 import java.util.*
 
 data class Token (val token: String)
@@ -26,4 +29,16 @@ object JwtConfig {
             .sign(algorithm)
 
     private fun getExpiration() = Date(System.currentTimeMillis() + validityInMs)
+
+}
+
+fun JWTAuthenticationProvider.customConfigure() {
+    verifier(JwtConfig.verifier)
+    realm = JwtConfig.issuer
+    validate {
+        if (getUsers().filter { u -> u.login == it.payload.getClaim("login").asString() }.any())
+            JWTPrincipal(it.payload)
+        else
+            null
+    }
 }

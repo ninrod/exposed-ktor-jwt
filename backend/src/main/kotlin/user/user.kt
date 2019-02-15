@@ -15,11 +15,13 @@ data class UserDTO (
 
 class User(id: EntityID<Long>) : Entity<Long>(id) {
     companion object : EntityClass<Long, User>(UserRepo)
+
     val login by UserRepo.login
     val firstname by UserRepo.firstname
     val lastname by UserRepo.lastname
     val description by UserRepo.description
     val password by UserRepo.password
+
     fun toDTO() = UserDTO(id.value, login, firstname, lastname, description ?: "")
 
     override fun toString(): String = with(StringBuilder()) {
@@ -42,4 +44,3 @@ object UserRepo : LongIdTable("usuario") {
     val description = varchar("description", length = 255).nullable()
     val password = varchar("password", length = 30)
 }
-

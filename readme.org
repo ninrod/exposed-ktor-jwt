@@ -5,7 +5,7 @@
 - backend secured with jwt tokens. It both creates and validates the tokens on selected routes.
 - frontend: angular 7 + angular material
 
-* build
+* Build
 ** backend
 
  #+BEGIN_SRC shell
@@ -18,7 +18,7 @@
  $ cd frontend && yarn && yarn build
 #+END_SRC
 
-* running
+* Execute
 ** when using an IDE for kotlin (e.g. jetbrains' Intellij)
    - boot the database with "make db" in the root dir
    - execute the main function (in main.kt)
@@ -28,24 +28,25 @@
    - build the frontend: =cd frontend && yarn && yarn build=
    - go to the root dir and issue: =make=
    - =note=: you must have =docker= and =docker-compose= installed
-* testing the =/secret= endpoint with postman
-  - see [[https://stackoverflow.com/a/24710676/4921402][this]] so question
-  - basically you have to issue a GET request containing a header row like this:
+* Test
+** testing the =/secret= endpoint with postman
+   - see [[https://stackoverflow.com/a/24710676/4921402][this]] so question
+   - basically you have to issue a GET request containing a header row like this:
 
-#+BEGIN_SRC text
-Key: 'Authorization'
-Value: Bearer 'yourjwttokenASDFASDFdsfasdfDSAFasdfADfADfASdafAsdFASDF'
-#+END_SRC
+ #+BEGIN_SRC text
+ Key: 'Authorization'
+ Value: Bearer 'yourjwttokenASDFASDFdsfasdfDSAFasdfADfADfASdafAsdFASDF'
+ #+END_SRC
 
-* testing the =/secret= endpoint with curl
-** login
-   #+BEGIN_SRC sh
-   $ TOKEN=$(curl -s -X POST -d '{"name" : "", "password": "secret"}' -H "Content-Type: application/json"  localhost:8080/login | jq -r '.token')
-   #+END_SRC
-** GET /secret
-   #+BEGIN_SRC sh
-   $ curl -H 'Accept: application/json' -H "Authorization: Bearer ${TOKEN}" https://localhost:8080/secret
-   #+END_SRC
+** testing the =/secret= endpoint with curl
+*** login
+    #+BEGIN_SRC sh
+    $ TOKEN=$(curl -s -X POST -d '{"name" : "", "password": "secret"}' -H "Content-Type: application/json"  localhost:8080/login | jq -r '.token')
+    #+END_SRC
+*** GET /secret
+    #+BEGIN_SRC sh
+    $ curl -H 'Accept: application/json' -H "Authorization: Bearer ${TOKEN}" https://localhost:8080/secret
+    #+END_SRC
 
 * LICENSE
 - [[https://www.gnu.org/licenses/gpl-3.0.en.html][GNU General Public License v3]]

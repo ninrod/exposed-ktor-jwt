@@ -23,13 +23,13 @@
    - boot the database with =make db= in the root dir
    - execute the main function (in main.kt)
    - =cd frontend && yarn start=
-   - check localhost:4200
+   - check http://localhost:4200
 ** running the whole project in docker
    - build the backend: =cd backend && gradle build=
    - build the frontend: =cd frontend && yarn && yarn build=
    - go to the root dir and issue: =make=
    - =note=: you must have =docker= and =docker-compose= installed
-   - check localhost:4200
+   - check http://localhost:4200
 * Test
 ** testing the =/secret= endpoint with postman
    - see [[https://stackoverflow.com/a/24710676/4921402][this]] so question

@@ -1,4 +1,4 @@
-package org.ninrod.blog
+package org.ninrod.blog.infra
 
 import com.auth0.jwt.*
 import com.auth0.jwt.algorithms.*

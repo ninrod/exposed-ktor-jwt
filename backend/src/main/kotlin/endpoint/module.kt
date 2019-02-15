@@ -9,10 +9,10 @@ import io.ktor.features.CallLogging
 import io.ktor.features.ContentNegotiation
 import io.ktor.gson.gson
 import io.ktor.routing.Routing
-import org.ninrod.blog.customConfigure
 import org.ninrod.blog.endpoint.login.login
 import org.ninrod.blog.endpoint.root.root
 import org.ninrod.blog.endpoint.secret.secret
+import org.ninrod.blog.infra.customConfigure
 
 fun Application.module() {
     install(CallLogging)

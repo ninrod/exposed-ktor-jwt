@@ -5,20 +5,17 @@
 - backend secured with jwt tokens. It both creates and validates the tokens on selected routes.
 - frontend: angular 7 + angular material
 
-* building
-#+BEGIN_SRC shell
+* build
+** backend
 
-# if you don't have a running postgresql container, spin up one:
-$ make db
+ #+BEGIN_SRC shell
+ $ cd backend && gradle build
+ #+END_SRC
 
-# first, build the backend
-$ cd backend && gradle build
+** frontend
 
-$ java -jar build/libs/chess-0.0.1.jar
-
-# now build the frontend
-$ cd frontend && yarn
-
+#+BEGIN_SRC sh
+ $ cd frontend && yarn && yarn build
 #+END_SRC
 
 * running

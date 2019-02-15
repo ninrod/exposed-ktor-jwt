@@ -1,4 +1,4 @@
-package org.ninrod.blog
+package org.ninrod.blog.endpoint
 
 import io.ktor.application.Application
 import io.ktor.application.call
@@ -6,6 +6,7 @@ import io.ktor.application.install
 import io.ktor.auth.Authentication
 import io.ktor.auth.UserPasswordCredential
 import io.ktor.auth.authenticate
+import io.ktor.auth.authentication
 import io.ktor.auth.jwt.JWTPrincipal
 import io.ktor.auth.jwt.jwt
 import io.ktor.features.CallLogging
@@ -20,8 +21,13 @@ import io.ktor.routing.get
 import io.ktor.routing.post
 import io.ktor.routing.route
 import io.ktor.routing.routing
+import org.ninrod.blog.JwtConfig
+import org.ninrod.blog.Token
+import org.ninrod.blog.user.authGetUsers
+import org.ninrod.blog.user.findUserByCredentials
+import org.ninrod.blog.user.getUsers
 
-fun Application.module() {
+fun Application.rotas() {
     install(CallLogging)
     install(ContentNegotiation) { gson { setPrettyPrinting() } }
     install(Authentication) {
@@ -40,14 +46,18 @@ fun Application.module() {
         route("/") { get { call.respondText("Hello World!", ContentType.Text.Plain) } }
 
         post("/login") {
-            val user = findUserByCredentials(call.receive<UserPasswordCredential>())
-            user?.let {
-                call.respond(Token(JwtConfig.makeToken(it)))
+            findUserByCredentials(call.receive<UserPasswordCredential>())?.let {
+                u -> call.respond(Token(JwtConfig.makeToken(u)))
             } ?: call.respond(HttpStatusCode.Unauthorized)
         }
 
         authenticate {
-            get("/secret") { call.respond(getUsers()) }
+            get("/secret") {
+                call.authentication.principal<JWTPrincipal>()?.let { t ->
+                    println("printando o principal: $t")
+                    call.respond(authGetUsers(t))
+                } ?: call.respond(HttpStatusCode.Unauthorized)
+            }
         }
     }
 }

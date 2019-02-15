@@ -2,6 +2,7 @@ package org.ninrod.blog
 
 import com.auth0.jwt.*
 import com.auth0.jwt.algorithms.*
+import org.ninrod.blog.user.User
 import java.util.*
 
 data class Token (val token: String)
@@ -17,7 +18,9 @@ object JwtConfig {
     fun makeToken(user: User): String = JWT.create()
             .withSubject("Authentication")
             .withIssuer(issuer)
+            .withClaim("id", user.id.value)
             .withClaim("login", user.login)
+            .withClaim("description", user.description)
             .withArrayClaim("names", arrayOf<String>(user.firstname, user.lastname))
             .withExpiresAt(getExpiration())
             .sign(algorithm)

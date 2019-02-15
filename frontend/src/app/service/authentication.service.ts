@@ -23,7 +23,7 @@ export class AuthenticationService {
         localStorage.setItem('token', JSON.stringify(token));
         this.tokenSubject.next(token);
       }
-      return token;
+      return null;
     }));
   }
 

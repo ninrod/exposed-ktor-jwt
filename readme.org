@@ -1,6 +1,9 @@
-* exposed-ktor
+* exposed-ktor-jwt
 
-- example of a exposed/ktor capable kotlin app using a buildSrc strategy and exporting an angular frontend
+- postgresql database
+- exposed+ktor+junit5 kotlin backend
+- secured with jwt tokens
+- frontend: angular 7 + angular material
 
 ** building
 #+BEGIN_SRC shell
@@ -14,7 +17,7 @@ $ cd backend && gradle build
 $ java -jar build/libs/chess-0.0.1.jar
 
 # now build the frontend
-$ cd frontend && yarn && yarn build
+$ cd frontend && yarn
 
 #+END_SRC
 

@@ -1,8 +1,8 @@
 * exposed-ktor-jwt
 
-- postgresql database
-- exposed+ktor+junit5 kotlin backend
-- secured with jwt tokens
+- postgresql database running in docker for the local dev environment with configurable sql schema.
+- kotlin backend using: Jetbrains' Exposed and Ktor. Kluent and Junit5 for tests.
+- backend secured with jwt tokens. It both creates and validates the tokens on selected routes.
 - frontend: angular 7 + angular material
 
 ** building

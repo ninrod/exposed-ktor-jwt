@@ -5,7 +5,7 @@
 - backend secured with jwt tokens. It both creates and validates the tokens on selected routes.
 - frontend: angular 7 + angular material
 
-** building
+* building
 #+BEGIN_SRC shell
 
 # if you don't have a running postgresql container, spin up one:
@@ -21,12 +21,16 @@ $ cd frontend && yarn
 
 #+END_SRC
 
-** running
-#+BEGIN_SRC shell
-$ java -jar backend/build/libs/chess-0.0.1.jar
-$ cd frontend && yarn start
-# then open your brower on http://localhost:4200
-#+END_SRC
+* running
+** when using an IDE for kotlin (e.g. jetbrains' Intellij)
+   - boot the database with "make db" in the root dir
+   - execute the main function (in main.kt)
+   - cd frontend && yarn start
+** running the whole project in docker
+   - build the backend: =cd backend && gradle build=
+   - build the frontend: =cd frontend && yarn && yarn build=
+   - go to the root dir and issue: =make=
+   - =note=: you must have =docker= and =docker-compose= installed
 * testing the =/secret= endpoint with postman
   - see [[https://stackoverflow.com/a/24710676/4921402][this]] so question
   - basically you have to issue a GET request containing a header row like this:

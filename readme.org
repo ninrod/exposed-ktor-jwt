@@ -30,7 +30,7 @@
    - go to the root dir and issue: =make=
    - =note=: you must have =docker= and =docker-compose= installed
    - check [[http://localhost:4200][localhost:4200]]
-* Test
+* Test the endpoints
 ** testing the =/secret= endpoint with postman
    - see [[https://stackoverflow.com/a/24710676/4921402][this]] so question
    - basically you have to issue a GET request containing a header row like this:
@@ -41,11 +41,11 @@
  #+END_SRC
 
 ** testing the =/secret= endpoint with curl
-*** login
+*** step 01: obtain and stash the token throught the /login endpoint
     #+BEGIN_SRC sh
     $ TOKEN=$(curl -s -X POST -d '{"name" : "", "password": "secret"}' -H "Content-Type: application/json"  localhost:8080/login | jq -r '.token')
     #+END_SRC
-*** GET /secret
+*** step 02 issue a GET /secret with a header containing the token
     #+BEGIN_SRC sh
     $ curl -H 'Accept: application/json' -H "Authorization: Bearer ${TOKEN}" https://localhost:8080/secret
     #+END_SRC

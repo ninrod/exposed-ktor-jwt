@@ -7,8 +7,8 @@ import io.ktor.request.receive
 import io.ktor.response.respond
 import io.ktor.routing.Route
 import io.ktor.routing.post
-import org.ninrod.blog.JwtConfig
-import org.ninrod.blog.Token
+import org.ninrod.blog.infra.JwtConfig
+import org.ninrod.blog.infra.Token
 import org.ninrod.blog.user.findUserByCredentials
 
 fun Route.login() {

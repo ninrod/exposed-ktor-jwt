@@ -43,7 +43,7 @@
 ** testing the =/secret= endpoint with curl
 *** step 01: obtain and stash the token throught the /login endpoint
     #+BEGIN_SRC sh
-    $ TOKEN=$(curl -s -X POST -d '{"name" : "", "password": "secret"}' -H "Content-Type: application/json"  localhost:8080/login | jq -r '.token')
+    $ TOKEN=$(curl -s -X POST -d '{"name" : "alice", "password": "secret"}' -H "Content-Type: application/json"  localhost:8080/login | jq -r '.token')
     #+END_SRC
 *** step 02 issue a GET /secret with a header containing the token
     #+BEGIN_SRC sh

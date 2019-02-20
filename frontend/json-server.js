@@ -29,6 +29,24 @@ server.get('/my/custom/path', (req, res) => {
 });
 
 // um exemplo genérico de post
+server.post('/login', (req, res) => {
+  console.dir(req.body);
+  let name = req.body.name;
+  let password = req.body.password;
+
+  console.log(name);
+  console.log(password);
+
+  if(name.trim() === "alice" && password.trim() === "secret") {
+    res.sendStatus(200);
+    return;
+  }
+
+  // res.jsonp(req.body);
+  res.sendStatus(401);
+});
+
+// um exemplo genérico de post
 server.post('/try', (req, res) => {
   req.body.mensagem = 'yes!';
   res.jsonp(req.body);

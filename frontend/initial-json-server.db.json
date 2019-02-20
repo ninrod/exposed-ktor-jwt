@@ -2,6 +2,22 @@
   "diagnostic": {
     "version": "0.0.1"
   },
+  "secret": [
+    {
+      "id": 0,
+      "login": "john",
+      "description": "ha",
+      "firstname": "john",
+      "lastname": "doe"
+    },
+    {
+      "id": 1,
+      "login": "alice",
+      "description": "wonderland",
+      "firstname": "alice",
+      "lastname": "wonderland"
+    }
+  ],
   "vector": [
     {"id": 1},
     {"id": 2},

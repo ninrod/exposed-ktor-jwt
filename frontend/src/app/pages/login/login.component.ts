@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, ViewChild } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
 import { NgForm } from '@angular/forms'
 import { first } from 'rxjs/operators'
@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
   returnUrl: string
   error = ''
 
+  @ViewChild('f') form: NgForm
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -30,20 +32,20 @@ export class LoginComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/'
   }
 
-  onSubmit(form: NgForm) {
-    console.dir(form)
-    console.dir(form.value)
+  onSubmit() {
+    console.dir(this.form)
+    console.dir(this.form.value)
 
     this.submitted = true
 
     // stop here if form is invalid
-    if (form.invalid) {
+    if (this.form.invalid) {
       return
     }
 
     this.loading = true
 
-    this.authenticationService.login(form.value["username"], form.value["password"])
+    this.authenticationService.login(this.form.value["username"], this.form.value["password"])
       .pipe(first())
       .subscribe(() => this.router.navigate([this.returnUrl]),
         () => {

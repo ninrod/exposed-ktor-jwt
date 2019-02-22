@@ -24,7 +24,7 @@
             {{ error }}
           </p>
           <div class="button">
-            <button type="submit" mat-button>Login</button>
+            <button type="submit" mat-button [disabled]="!f.valid">Login</button>
           </div>
         </form>
       </mat-card-content>

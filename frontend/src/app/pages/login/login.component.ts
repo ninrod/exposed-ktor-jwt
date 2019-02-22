@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
-// import { NgForm } from '@angular/forms'
+import { NgForm } from '@angular/forms'
 import { first } from 'rxjs/operators'
 import { AuthenticationService } from '../../service/authentication.service'
 
@@ -26,7 +26,8 @@ export class LoginComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/'
   }
 
-  onSubmit(form: HTMLFormElement) {
+  onSubmit(form: NgForm) {
+    console.dir(form)
     console.dir(form.value)
 
     this.submitted = true

@@ -9,24 +9,29 @@
       <mat-card-title>Login</mat-card-title>
       <mat-card-subtitle>credentials: alice|secret</mat-card-subtitle>
       <mat-card-content>
-        <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <p>
             <mat-form-field>
-              <input type="text" matInput ngModel placeholder="Username" name="username" required #username="ngModel">
-              <mat-error *ngIf="username.invalid">please enter a valid username</mat-error>
+              <input type="text" matInput placeholder="Username"
+                name="username"
+                formControlName="username"
+              >
+              <!-- <mat-error>please enter a valid username</mat-error> -->
             </mat-form-field>
           </p>
           <p>
             <mat-form-field>
-              <input type="password" matInput ngModel placeholder="Password" name="password" required>
-              <mat-error *ngIf="username.invalid">please enter a valid password</mat-error>
+              <input type="password" matInput placeholder="Password"
+                name="password"
+                formControlName="password">
+              <!-- <mat-error>please enter a valid password</mat-error> -->
             </mat-form-field>
           </p>
           <p *ngIf="error" class="error">
             {{ error }}
           </p>
           <div class="button">
-            <button type="submit" mat-button [disabled]="!f.valid">Login</button>
+            <button type="submit" mat-button [disabled]="!loginForm.valid">Login</button>
           </div>
         </form>
       </mat-card-content>

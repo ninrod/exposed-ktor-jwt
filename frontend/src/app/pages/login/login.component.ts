@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
-import { NgForm } from '@angular/forms'
+import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { first } from 'rxjs/operators'
 import { AuthenticationService } from '../../service/authentication.service'
 
@@ -11,12 +11,10 @@ import { AuthenticationService } from '../../service/authentication.service'
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  loading = false
-  submitted = false
   returnUrl: string
   error = ''
 
-  @ViewChild('f') form: NgForm
+  loginForm: FormGroup
 
   constructor(
     private route: ActivatedRoute,
@@ -30,27 +28,28 @@ export class LoginComponent implements OnInit {
 
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/'
+
+    this.loginForm = new FormGroup({
+      username: new FormControl(null, Validators.required),
+      password: new FormControl(null, Validators.required)
+    })
   }
 
   onSubmit() {
-    console.dir(this.form)
-    console.dir(this.form.value)
-
-    this.submitted = true
+    console.dir(this.loginForm)
+    console.dir(this.loginForm.value)
 
     // stop here if form is invalid
-    if (this.form.invalid) {
+    if (this.loginForm.invalid) {
       return
     }
 
-    this.loading = true
 
-    this.authenticationService.login(this.form.value["username"], this.form.value["password"])
+    this.authenticationService.login(this.loginForm.value["username"], this.loginForm.value["password"])
       .pipe(first())
       .subscribe(() => this.router.navigate([this.returnUrl]),
         () => {
           this.error = "invalid user/password"
-          this.loading = false
         })
   }
 }

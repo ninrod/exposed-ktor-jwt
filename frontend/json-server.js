@@ -38,7 +38,9 @@ server.post('/login', (req, res) => {
   console.log(password);
 
   if(name.trim() === "alice" && password.trim() === "secret") {
-    res.sendStatus(200);
+    res.jsonp({
+      token: "secret"
+    });
     return;
   }
 

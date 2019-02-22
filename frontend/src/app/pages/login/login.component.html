@@ -12,12 +12,14 @@
         <form (ngSubmit)="onSubmit(f)" #f="ngForm">
           <p>
             <mat-form-field>
-              <input type="text" matInput ngModel placeholder="Username" name="username" required>
+              <input type="text" matInput ngModel placeholder="Username" name="username" required #username="ngModel">
+              <mat-error *ngIf="username.invalid">please enter a valid username</mat-error>
             </mat-form-field>
           </p>
           <p>
             <mat-form-field>
               <input type="password" matInput ngModel placeholder="Password" name="password" required>
+              <mat-error *ngIf="username.invalid">please enter a valid password</mat-error>
             </mat-form-field>
           </p>
           <p *ngIf="error" class="error">

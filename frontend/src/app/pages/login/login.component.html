@@ -16,7 +16,7 @@
                 name="username"
                 formControlName="username"
               >
-              <!-- <mat-error>please enter a valid username</mat-error> -->
+              <mat-error *ngIf="!loginForm.get('username').valid">please enter a valid username</mat-error>
             </mat-form-field>
           </p>
           <p>
@@ -24,7 +24,7 @@
               <input type="password" matInput placeholder="Password"
                 name="password"
                 formControlName="password">
-              <!-- <mat-error>please enter a valid password</mat-error> -->
+              <mat-error  *ngIf="!loginForm.get('password').valid">please enter a valid password</mat-error>
             </mat-form-field>
           </p>
           <p *ngIf="error" class="error">

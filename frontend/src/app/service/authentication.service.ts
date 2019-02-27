@@ -10,7 +10,10 @@ export class AuthenticationService {
   public tokenSubject: BehaviorSubject<Token> = new BehaviorSubject<Token>(null)
 
   constructor(private http: HttpClient) {
-    this.tokenSubject.next(JSON.parse(localStorage.getItem('token')))
+    let token = localStorage.getItem('token')
+    if (token) {
+      this.tokenSubject.next(JSON.parse(token))
+    }
   }
 
   login(username: string, password: string) {

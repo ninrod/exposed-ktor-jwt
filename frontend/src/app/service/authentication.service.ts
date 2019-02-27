@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http'
 import { BehaviorSubject, Observable } from 'rxjs'
 import { tap } from 'rxjs/operators'
 import { Token } from '../model/token'
-import { Credential } from '../model/credential'
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -17,11 +16,10 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string): Observable<Token> {
-    let cred = new Credential({
+    return this.http.post<Token>('/api/login', {
       name: username,
       password: password
-    })
-    return this.http.post<Token>('/api/login', cred).pipe(tap(token => {
+    }).pipe(tap(token => {
       if (token) {
         localStorage.setItem('token', JSON.stringify(token))
         this.tokenSubject.next(token)

@@ -10,9 +10,8 @@ import { AuthenticationService } from '../../service/authentication.service'
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  error: string = ''
   returnUrl: string
-  error = ''
-
   loginForm: FormGroup
 
   constructor(
@@ -22,12 +21,8 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // reset login status
     this.authenticationService.logout()
-
-    // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/'
-
     this.loginForm = new FormGroup({
       username: new FormControl(null, Validators.required),
       password: new FormControl(null, [Validators.required])
@@ -38,11 +33,9 @@ export class LoginComponent implements OnInit {
     console.dir(this.loginForm)
     console.dir(this.loginForm.value)
 
-    // stop here if form is invalid
     if (this.loginForm.invalid) {
       return
     }
-
 
     this.authenticationService.login(this.loginForm.value["username"], this.loginForm.value["password"])
       .pipe(first())

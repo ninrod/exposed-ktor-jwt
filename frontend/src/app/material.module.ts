@@ -13,7 +13,7 @@ import {
   MatSidenavModule,
   MatTableModule,
   MatToolbarModule
-} from '@angular/material';
+} from '@angular/material'
 
 @NgModule({
   imports: [

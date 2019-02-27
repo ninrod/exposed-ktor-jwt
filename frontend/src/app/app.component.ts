@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Token } from './model/token';
-import { Router } from '@angular/router';
-import { AuthenticationService } from './service/authentication.service';
+import { Component, OnInit } from '@angular/core'
+import { Token } from './model/token'
+import { Router } from '@angular/router'
+import { AuthenticationService } from './service/authentication.service'
 
 @Component({
   selector: 'app-root',
@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   }
 
   logout() {
-    this.auth.logout();
-    this.router.navigate(['/login']);
+    this.auth.logout()
+    this.router.navigate(['/login'])
   }
 }

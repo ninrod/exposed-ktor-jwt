@@ -11,9 +11,8 @@ export class HomeComponent implements OnInit {
   users: User[]
 
   constructor(private us: UsersService) { }
+
   ngOnInit() {
-    this.us.getUsers().subscribe(
-      (users) => this.users = users
-    )
+    this.us.getUsers().subscribe(users => this.users = users)
   }
 }

@@ -17,8 +17,6 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string) {
-    console.log(username)
-    console.log(password)
     let cred = new Credential({
       name: username,
       password: password

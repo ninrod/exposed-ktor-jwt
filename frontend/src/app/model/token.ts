@@ -1,6 +1,6 @@
 export class Token {
   public token: string
   constructor(values: object = {}) {
-    Object.assign(this, values);
+    Object.assign(this, values)
   }
 }

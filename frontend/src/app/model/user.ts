@@ -5,6 +5,6 @@ export class User {
   public description: string
 
   constructor(values: object = {}) {
-    Object.assign(this, values);
+    Object.assign(this, values)
   }
 }

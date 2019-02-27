@@ -44,7 +44,6 @@ server.post('/login', (req, res) => {
     return;
   }
 
-  // res.jsonp(req.body);
   res.sendStatus(401);
 });
 

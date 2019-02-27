@@ -19,9 +19,9 @@ import { UsersService } from './service/user.service';
 import { DashboardComponent } from './pages/dashboard/dashboard.component'
 
 export function tokenRetriever() {
-  let token = JSON.parse(localStorage.getItem('token'))
+  let token = localStorage.getItem('token')
   if (token)
-    return token.token
+    return JSON.parse(token).token
   return null
 }
 

@@ -13,7 +13,7 @@ data class Token (val token: String)
 object JwtConfig {
     const val issuer = "ninrod.org"
     private const val secret = "zAP5MBA4B4Ijz0MZaS48"
-    private const val validityInMs = 36_000_00 * 10 // 10 hours
+    private const val validityInMs = 3_600_000 * 10 // 10 hours
     private val algorithm = Algorithm.HMAC512(secret)
 
     val verifier: JWTVerifier = JWT.require(algorithm).withIssuer(issuer).build()

@@ -13,6 +13,8 @@ import org.ninrod.blog.user.findUserByCredentials
 
 fun Route.login() {
     post("/login") {
+        // get client ip behind proxy
+        // https://github.com/ktorio/ktor/issues/351
         findUserByCredentials(call.receive<UserPasswordCredential>())?.let {
             u -> call.respond(Token(JwtConfig.makeToken(u)))
         } ?: call.respond(HttpStatusCode.Unauthorized)

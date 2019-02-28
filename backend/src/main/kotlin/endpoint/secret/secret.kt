@@ -12,7 +12,7 @@ import org.ninrod.blog.user.authGetUsers
 fun Route.secret() {
     get("/secret") {
         call.authentication.principal<JWTPrincipal>()
-                ?.let { t -> call.respond(authGetUsers(t)) }
+                ?.let { princ -> call.respond(authGetUsers(princ)) }
                 ?: call.respond(HttpStatusCode.Unauthorized)
     }
 }
